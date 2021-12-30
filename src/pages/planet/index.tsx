@@ -5,19 +5,11 @@ import Loader from '../../components/loader';
 import IPlanet from '../../types/planet';
 import { getIdFromUrl } from '../../utilities';
 
+// Planet endpoint: `https://swapi.dev/api/planets/${id}`
+// Get url params: const { id } = useParams<{ id: string }>();
+// Title  style: style={{ marginBottom: 10, fontSize: 40, fontWeight: 700 }}
+
 const PlanetPage = () => {
-  const { id } = useParams<{ id: string }>();
-
-  const { data, isLoading } = useQuery<IPlanet>(
-    ['getPlanet', id],
-    async () => {
-      const data = await fetch(`https://swapi.dev/api/planets/${id}`);
-
-      return data.json();
-    },
-    { enabled: !!id },
-  );
-
   return (
     <div
       style={{
@@ -28,18 +20,7 @@ const PlanetPage = () => {
         justifyContent: 'center',
         flexDirection: 'column',
       }}
-    >
-      {isLoading || data === undefined ? (
-        <Loader alt='Planet loading' />
-      ) : (
-        <>
-          <div style={{ marginBottom: 10, fontSize: 40, fontWeight: 700 }}>Planet Information</div>
-          <div>{data.name}</div>
-          <div>{data.climate}</div>
-          <div>{data.population}</div>
-        </>
-      )}
-    </div>
+    ></div>
   );
 };
 
