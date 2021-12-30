@@ -1,8 +1,9 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import loader from '../../../src/images/loader.gif';
+import { Link } from 'react-router-dom';
 import Loader from '../../components/loader';
 import IPlanets from '../../types/planets';
+import { getIdFromUrl } from '../../utilities';
 
 const PlanetsPage = () => {
   const { data, isLoading } = useQuery<IPlanets>('getPlanets', async () => {
@@ -23,13 +24,19 @@ const PlanetsPage = () => {
       }}
     >
       {isLoading ? (
-        <Loader />
+        <Loader alt='Planets loading' />
       ) : (
-        <>
-          {data?.results.map((x) => (
-            <div>{x.name}</div>
-          ))}
-        </>
+        <div>
+          <div style={{ marginBottom: 10, fontSize: 40, fontWeight: 700 }}>Star Wars Planets</div>
+          {data?.results.map((x) => {
+            const id = getIdFromUrl(x.url);
+            return (
+              <Link to={`/planet/${id}`} key={id} style={{ display: 'flex', justifyContent: 'center' }}>
+                {x.name}
+              </Link>
+            );
+          })}
+        </div>
       )}
     </div>
   );

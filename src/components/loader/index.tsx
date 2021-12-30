@@ -1,7 +1,7 @@
 import loader from '../../../src/images/loader.gif';
 
-const Loader = () => {
-  return <img src={loader} alt='Planets loading' height={50} />;
+const Loader = ({ alt }: { alt: string }) => {
+  return <img src={loader} alt={alt} height={50} />;
 };
 
 export default Loader;

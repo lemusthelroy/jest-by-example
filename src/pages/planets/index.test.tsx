@@ -1,23 +1,35 @@
 import { screen, render, waitFor } from '@testing-library/react';
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import PlanetsPage from '.';
+import Routes from '../../navigation/routes';
 import Planets from '../../mocks/fixtures/planets';
 import userEvent from '@testing-library/user-event';
+import { MemoryRouter } from 'react-router-dom';
+import PlanetPage from '../planet';
 
 const queryClient = new QueryClient();
 
-const Wrapper = ({ children }: { children: JSX.Element }) => {
-  return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
+const Component = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <MemoryRouter initialEntries={[`/planets`]}>
+        <Routes />
+      </MemoryRouter>
+    </QueryClientProvider>
+  );
 };
 
 describe('Planets page', () => {
+  it('should display title for page', async () => {
+    render(<Component />);
+
+    const title = await screen.findByText('Star Wars Planets');
+
+    expect(title).toBeInTheDocument();
+  });
+
   it('should display list of planets from Star Wars', async () => {
-    render(
-      <Wrapper>
-        <PlanetsPage />
-      </Wrapper>,
-    );
+    render(<Component />);
 
     await waitFor(() => expect(screen.queryByAltText('Planets loading')).not.toBeInTheDocument());
 
@@ -26,11 +38,7 @@ describe('Planets page', () => {
   });
 
   it('should navigate to plant page when clicking planet', async () => {
-    render(
-      <Wrapper>
-        <PlanetsPage />
-      </Wrapper>,
-    );
+    render(<Component />);
 
     await waitFor(() => expect(screen.queryByAltText('Planets loading')).not.toBeInTheDocument());
 
@@ -38,6 +46,6 @@ describe('Planets page', () => {
 
     userEvent.click(planet);
 
-    expect(await screen.findByText('Back to planets')).toBeInTheDocument();
+    expect(await screen.findByText('Planet Information')).toBeInTheDocument();
   });
 });
