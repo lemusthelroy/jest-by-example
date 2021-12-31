@@ -7,10 +7,13 @@ import { getIdFromUrl } from '../../../utilities';
 
 const PlanetsPage = () => {
   const { data, isLoading } = useQuery<IPlanets>('getPlanets', async () => {
+    console.log('here123');
     const data = await fetch('https://swapi.dev/api/planets');
 
     return data.json();
   });
+
+  console.log('here123', data);
 
   return (
     <div

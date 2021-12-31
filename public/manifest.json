@@ -1,0 +1,9 @@
+{
+  "short_name": "Jest by Example",
+  "name": "Jest by Example",
+  "icons": [],
+  "start_url": "./planets",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

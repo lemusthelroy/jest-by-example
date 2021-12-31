@@ -33,7 +33,9 @@ const PlanetPage = () => {
         <Loader alt='Planet loading' />
       ) : (
         <>
-          <div style={{ marginBottom: 10, fontSize: 40, fontWeight: 700 }}>Planet Information</div>
+          <div id='title' style={{ marginBottom: 10, fontSize: 40, fontWeight: 700 }}>
+            Planet Information
+          </div>
           <div>{data.name}</div>
           <div>{data.climate}</div>
           <div>{data.population}</div>

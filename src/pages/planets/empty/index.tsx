@@ -1,9 +1,9 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
-import Loader from '../../components/loader';
-import IPlanets from '../../types/planets';
-import { getIdFromUrl } from '../../utilities';
+import Loader from '../../../components/loader';
+import IPlanets from '../../../types/planets';
+import { getIdFromUrl } from '../../../utilities';
 
 // Endpoint: 'https://swapi.dev/api/planets'
 // Title style: style={{ marginBottom: 10, fontSize: 40, fontWeight: 700 }}

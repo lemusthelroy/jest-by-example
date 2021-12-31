@@ -5,7 +5,7 @@ import Routes from '../../../navigation/routes';
 import Planets from '../../../mocks/fixtures/planets';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
-import PlanetPage from '../../planet';
+import PlanetPage from '../../planet/empty';
 
 const queryClient = new QueryClient();
 
