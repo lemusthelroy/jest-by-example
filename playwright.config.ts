@@ -1,9 +1,11 @@
 import { PlaywrightTestConfig, devices } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
-  use: {
-    browserName: 'chromium',
-    baseURL: 'http://localhost:3006',
+  webServer: {
+    command: 'yarn start',
+    port: 3006,
+    timeout: 120 * 1000,
+    reuseExistingServer: !process.env.CI,
   },
 };
 export default config;
