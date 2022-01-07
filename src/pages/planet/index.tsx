@@ -1,9 +1,7 @@
-import React from 'react';
 import { useQuery } from 'react-query';
-import { Link, useParams } from 'react-router-dom';
-import Loader from '../../../components/loader';
-import IPlanet from '../../../types/planet';
-import { getIdFromUrl } from '../../../utilities';
+import { useParams } from 'react-router-dom';
+import Loader from '../../components/loader';
+import IPlanet from '../../types/planet';
 
 const PlanetPage = () => {
   const { id } = useParams<{ id: string }>();

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes as RouterRoutes, Route, Navigate } from 'react-router-dom';
-import PlanetPage from '../pages/planet/completed';
-import PlanetsPage from '../pages/planets/completed';
+import PlanetPage from '../pages/planet';
+import PlanetsPage from '../pages/planets';
 
 const Routes = () => (
   <RouterRoutes>
