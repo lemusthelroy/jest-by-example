@@ -17,6 +17,16 @@ const Component = () => {
 };
 
 describe('Planet page', () => {
+  afterEach(() => {
+    queryClient.clear();
+  });
+
+  it('should display the loader for the page', () => {
+    render(<Component />);
+
+    expect(screen.getByAltText('Planet loading')).toBeInTheDocument();
+  });
+
   it('should render planet information', async () => {
     render(<Component />);
 

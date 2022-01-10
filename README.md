@@ -1,12 +1,8 @@
-# Getting Started with Create React App
+# Agenda
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the agenda for the Jest By Example training session
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
+### Running application - `yarn start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -14,33 +10,47 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `yarn test`
+### Running tests - `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in the non-interactive mode.\
 
-### `yarn build`
+### Planets page
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- How do we get the planet data?
+- Usage of useQuery
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Test descriptions
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- `Describe` the component you are testing
+- Then what `It` is expected to do
 
-### `yarn eject`
+### Planets page - waiting for data
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- `waitFor` - waits for function to not throw error / fail test
+- `await findBy*` - waits for that element
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Planets page - mocking the data
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+All of our data network responses are mocked with MSW. This allows us to run tests and have endpoints responsd with data.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The handlers are located in `src/mocks/handlers.ts`
 
-## Learn More
+### Wrappers
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+We need test wrappers, in order to use functionality that requires context outside of the component
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Wrappers are often required when testing components that use the following:-
+
+- React Query
+- State management solutions - Redux, useContext
+- Navigation
+- And many more
+
+### Summary
+
+We have written tests that deal with the following
+
+- Network requests
+- Querying the DOM
+- Waiting for elements
+- Navigation

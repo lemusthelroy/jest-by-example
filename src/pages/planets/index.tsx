@@ -22,12 +22,12 @@ const PlanetsPage = () => {
         flexDirection: 'column',
       }}
     >
-      {isLoading ? (
+      {isLoading || !data ? (
         <Loader alt='Planets loading' />
       ) : (
         <div>
           <div style={{ marginBottom: 10, fontSize: 40, fontWeight: 700 }}>Star Wars Planets</div>
-          {data?.results.map((x) => {
+          {data.results.map((x) => {
             const id = getIdFromUrl(x.url);
             return (
               <Link to={`/planet/${id}`} key={id} style={{ display: 'flex', justifyContent: 'center' }}>

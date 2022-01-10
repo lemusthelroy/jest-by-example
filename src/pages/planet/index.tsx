@@ -27,7 +27,7 @@ const PlanetPage = () => {
         flexDirection: 'column',
       }}
     >
-      {isLoading || data === undefined ? (
+      {isLoading || !data ? (
         <Loader alt='Planet loading' />
       ) : (
         <>
