@@ -35,6 +35,13 @@ describe('Planets page', () => {
     expect(screen.getByText(Planets.results[1].name)).toBeInTheDocument();
   });
 
+  it.skip('should display list of planets from Star Wars', async () => {
+    render(<Component />);
+
+    expect(screen.getByText(Planets.results[0].name)).toBeInTheDocument();
+    expect(screen.getByText(Planets.results[1].name)).toBeInTheDocument();
+  });
+
   it('should navigate to plant page when clicking planet', async () => {
     render(<Component />);
 
