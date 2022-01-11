@@ -18,7 +18,7 @@ const Component = () => {
   );
 };
 
-describe('Planets page - good tests', () => {
+describe('Planets page', () => {
   afterEach(() => {
     queryClient.clear();
   });
@@ -46,7 +46,7 @@ describe('Planets page - good tests', () => {
     expect(screen.getByText(Planets.results[1].name)).toBeInTheDocument();
   });
 
-  it('should navigate to plant page when clicking planet', async () => {
+  it('should navigate to planet page when clicking planet', async () => {
     render(<Component />);
 
     await waitFor(() => expect(screen.queryByAltText('Planets loading')).not.toBeInTheDocument());

@@ -12,7 +12,7 @@ You will also see any lint errors in the console.
 
 ### Running tests - `yarn test`
 
-Launches the test runner in the non-interactive mode.\
+Launches the test runner in the non-interactive mode. These options are specififed in the package.json of the project.
 
 ### Planets page
 
@@ -45,6 +45,12 @@ Wrappers are often required when testing components that use the following:-
 - State management solutions - Redux, useContext
 - Navigation
 - And many more
+
+### Interactions
+
+Ideally, we should be using `useEvent` from `@testing-library/user-event` for testing as it has been created to mimic how a user interacts with a browswer.
+
+Occassionaly, we will need to use `fireEvent` from `@testing-library/dom`, which relies more on the implementation of components, but we should always look to use `useEvent` in the first instance.
 
 ### Summary
 
