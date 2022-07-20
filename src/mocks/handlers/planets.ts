@@ -1,7 +1,7 @@
 import { rest } from 'msw';
-import Planets from './fixtures/planets';
+import Planets from '../fixtures/planets';
 
-export const handlers = [
+const planetHandlers = [
   rest.get('https://swapi.dev/api/planets', (req, res, ctx) => {
     return res(ctx.json(Planets));
   }),
@@ -9,3 +9,5 @@ export const handlers = [
     return res(ctx.json(Planets.results[0]));
   }),
 ];
+
+export default planetHandlers;

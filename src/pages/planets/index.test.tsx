@@ -5,8 +5,19 @@ import Planets from '../../mocks/fixtures/planets';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import PlanetsPage from '.';
+import { server } from '../../mocks/server';
+import planetHandlers from '../../mocks/handlers/planets';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      // ✅ turns retries off
+      retry: false,
+      //This stops the tests being held open by garbage collection
+      cacheTime: 0,
+    },
+  },
+});
 
 const Component = () => {
   return (
@@ -19,8 +30,8 @@ const Component = () => {
 };
 
 describe('Planets page', () => {
-  afterEach(() => {
-    queryClient.clear();
+  beforeEach(() => {
+    server.use(...planetHandlers);
   });
 
   it('should display the loader for the page', () => {
@@ -60,12 +71,12 @@ describe('Planets page', () => {
 });
 
 describe('Planets page - bad tests', () => {
-  afterEach(() => {
-    queryClient.clear();
+  beforeEach(() => {
+    server.use(...planetHandlers);
   });
 
   // Not waiting for data to load
-  it.skip('should display title for page', () => {
+  it.skip('should display title for page - no waiting', () => {
     render(<Component />);
 
     const title = screen.getByText('Star Wars Planets');
@@ -74,7 +85,7 @@ describe('Planets page - bad tests', () => {
   });
 
   // Running test without a wrapper
-  it.skip('should display title for page', async () => {
+  it.skip('should display title for page - no wrapper', async () => {
     render(<PlanetsPage />);
 
     const title = await screen.findByText('Star Wars Planets');

@@ -3,8 +3,19 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import Routes from '../../navigation/routes';
 import { MemoryRouter } from 'react-router-dom';
 import Planets from '../../mocks/fixtures/planets';
+import { server } from '../../mocks/server';
+import planetHandlers from '../../mocks/handlers/planets';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      // ✅ turns retries off
+      retry: false,
+      //This stops the tests being held open by garbage collection
+      cacheTime: 0,
+    },
+  },
+});
 
 const Component = () => {
   return (
@@ -17,8 +28,8 @@ const Component = () => {
 };
 
 describe('Planet page', () => {
-  afterEach(() => {
-    queryClient.clear();
+  beforeEach(() => {
+    server.use(...planetHandlers);
   });
 
   it('should display the loader for the page', () => {
